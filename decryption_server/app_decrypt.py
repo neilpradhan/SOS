@@ -9,10 +9,16 @@ app = Flask(__name__)
 CORS(app)
 
 # Dummy function to simulate key fetching by key ID
+# def get_key_using_keyid(key_id):
+#     # Simulating fetching a key
+#     key = base64.b64encode(os.urandom(16)).decode('utf-8')  # Match encryption key structure
+#     return {"key": key}
+
 def get_key_using_keyid(key_id):
-    # Simulating fetching a key
-    key = base64.b64encode(os.urandom(16)).decode('utf-8')  # Match encryption key structure
-    return {"key": key}
+    # Return a mock response for testing
+    return {
+        'key': base64.b64encode(b'16_byte_test_key').decode('utf-8')
+    }
 
 @app.route('/decrypt', methods=['POST'])
 def decrypt_message():
