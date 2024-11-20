@@ -1,0 +1,24 @@
+vue create encryption-app
+cd encryption-app
+npm install axios
+
+
+1. python -m venv .venv
+
+2..venv\Scripts\activate
+
+pip install flask flask-cors pycryptodome
+
+
+
+
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+
+change the Encrypt server IP and Decrypt server IP in the EncryptDecrypt.vue file
+
+
