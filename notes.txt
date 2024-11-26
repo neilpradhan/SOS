@@ -20,6 +20,34 @@ npm run serve
 
 change the Encrypt server IP and Decrypt server IP in the EncryptDecrypt.vue file instead of  localhost
 
+uncomment get_key and get_key_using_keyid
+
+
+From the Public folder of the lotto app take the folder eds_local and copy and paste it inside
+src/assets within the encryption-app and also with decryption-app
+
+
+Inside the src main.js file add this line for both encryption-app and decryption-app
+
+import './assets/eds_local/eds.min.css';
+
+
+
+
+Codes to comment or change
+
+1. encyption_server  get_key uncomment
+
+2. decryption server get_key_using_keyid
+
+3. Inside the encryption-app within EncryptMessage  point to server 5000
+
+4.  Inside the decryption-app DecryptMessage change the two server end points
+
+
+
+
+
 
 
 
