@@ -2,3 +2,4 @@ Flask==2.3.3
 Flask-Cors==3.0.10
 pycryptodome==3.17
 requests==2.31.0
+Flask-SocketIO
