@@ -1,20 +1,19 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from flask_socketio import SocketIO
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 import base64
-import os
 
 app = Flask(__name__)
 CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
-# Dummy function to simulate key fetching
-# def get_key():
-#     # Simulating fetching a key
-#     key = os.urandom(16)  # 128-bit AES key
-#     key_id = "dummy-key-id"
-#     return {"key": base64.b64encode(key).decode('utf-8'), "key_ID": key_id}
-
+def get_key():
+    return {
+        'key_ID': 'dummy_key_id',
+        'key': base64.b64encode(b'16_byte_test_key').decode('utf-8')
+    }
 
 # def get_key():
 #     # Define the URL
@@ -41,12 +40,6 @@ CORS(app)
 #     result = response.json()
 #     return result['keys'][0]
 
-def get_key():
-    return {
-        'key_ID': 'dummy_key_id',
-        'key': base64.b64encode(b'16_byte_test_key').decode('utf-8')
-    }
-
 @app.route('/encrypt', methods=['POST'])
 def encrypt_message():
     input_data = request.get_json()
@@ -62,22 +55,16 @@ def encrypt_message():
     iv = cipher.iv
     ciphertext = cipher.encrypt(pad(plaintext.encode('utf-8'), AES.block_size))
 
-    # Store the encrypted data in-memory
-    global latest_encrypted_data
-    latest_encrypted_data = {
+    encrypted_data = {
         "encrypted_message": base64.b64encode(ciphertext).decode('utf-8'),
         "iv": base64.b64encode(iv).decode('utf-8'),
         "key_id": key_id
     }
 
-    return jsonify(latest_encrypted_data), 200
-
-@app.route('/get-encrypted-data', methods=['GET'])
-def get_encrypted_data():
-    if not latest_encrypted_data:
-        return jsonify({"error": "No encrypted data available"}), 404
-    return jsonify(latest_encrypted_data), 200
-
+    # Broadcast the encrypted data to all connected clients
+    socketio.emit('new_encrypted_message', encrypted_data)
+    
+    return jsonify(encrypted_data), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
