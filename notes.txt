@@ -54,6 +54,8 @@ pip install flask-socketio eventlet
 # For Vue project
 npm install socket.io-client
 
+inside assets folder add eds_local 
+
 
 
 
