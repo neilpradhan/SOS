@@ -1,8 +1,6 @@
 <template>
   <div class="app-container dark">
-    <!-- Include Watermark and Footer -->
     <WatermarkAndFooter />
-
     <div class="main-content">
       <h1>Message Encryption</h1>
       <section>
@@ -59,9 +57,39 @@ export default {
 .main-content {
   flex: 1;
   padding: 20px;
-  margin-top: 100px; /* Adjust this value to ensure no overlap */
-  color: #fff; /* White text for dark mode */
+  margin-top: 100px;
+  color: #fff;
 }
 
+textarea {
+  width: 100%;
+  min-height: 100px;
+  margin: 10px 0;
+  padding: 8px;
+  background-color: #2d2d2d;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 4px;
+}
 
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.result-section {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
 </style>
