@@ -8,6 +8,7 @@ npm install axios
 2..venv\Scripts\activate
 
 pip install flask flask-cors pycryptodome
+pip install requests
 
 
 vue create encryption-app
@@ -25,18 +26,6 @@ uncomment get_key and get_key_using_keyid
 
 From the Public folder of the lotto app take the folder eds_local and copy and paste it inside
 src/assets within the encryption-app and also with decryption-app
-
-make sure the assets have the following files
-
-eds_local/ (Folder)
-static/ (Folder)
-asset-manifest
-eds.min
-favicon
-logo
-logo192
-logo512
-manifest
 
 
 Inside the src main.js file add this line for both encryption-app and decryption-app
@@ -57,7 +46,13 @@ Codes to comment or change
 4.  Inside the decryption-app DecryptMessage change the two server end points
 
 
+For broadcasting logic
 
+# For Flask servers
+pip install flask-socketio eventlet
+
+# For Vue project
+npm install socket.io-client
 
 
 
